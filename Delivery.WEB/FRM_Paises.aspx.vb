@@ -17,7 +17,7 @@ Public Class FRM_Paieses
     End Sub
 
     Public Function cargar_Grilla()
-
+        MsgBox("hola mundo")
         OPaises = New Paises
         oDs = OPaises.BuscarTodos()
         grd_Lista.DataSource = oDs.Tables(0)
