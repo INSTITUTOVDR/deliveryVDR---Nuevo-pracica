@@ -17,9 +17,6 @@
         .auto-style3 {
             width: 154px;
         }
-        .auto-style6 {
-            height: 156px;
-        }
         .auto-style7 {
             font-family: Arial, Helvetica, sans-serif;
             font-size: large;
@@ -37,9 +34,20 @@
         }
         .auto-style13 {
             height: 21px;
+            width: 304px;
         }
         .auto-style15 {
             height: 30px;
+        }
+        .auto-style16 {
+            margin-left: 0px;
+        }
+        .auto-style17 {
+            height: 26px;
+            width: 304px;
+        }
+        .auto-style18 {
+            width: 304px;
         }
     </style>
 </head>
@@ -67,11 +75,17 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style1" colspan="3">&nbsp;</td>
+                    <td class="auto-style1" colspan="2">
+                        <asp:HiddenField ID="HF" runat="server" />
+                    </td>
+                    <td class="auto-style1">&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style1" colspan="3">
-                        <asp:GridView ID="grd_Lista" runat="server" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" Width="1020px">
+                        <asp:GridView ID="Grilla" runat="server" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" Width="1016px">
+                            <Columns>
+                                <asp:CommandField ButtonType="Button" HeaderText="Consultar Fila" ShowSelectButton="True" />
+                            </Columns>
                             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
                             <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
                             <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
@@ -86,55 +100,54 @@
                 </tr>
                 <tr>
                     <td class="auto-style11" colspan="3">
-                        <asp:Button ID="btn_Cargar" runat="server" Text="Guardar" Width="200px" />
+                        <asp:Button ID="btn_Agregar" runat="server" Text="Agregar" Width="200px" />
                         &nbsp;<asp:Button ID="btn_Modificar" runat="server" Text="Modificar" Width="200px" />
                         &nbsp;<asp:Button ID="btn_Limpiar" runat="server" Text="Limpiar" Width="200px" />
-                        &nbsp;<asp:Button ID="btn_ConsultarID" runat="server" Text="Consultar x ID" Width="200px" />
-                    &nbsp;<asp:Button ID="btn_ConsultarTodo" runat="server" Text="Consultar Todo" Width="200px" />
+                        &nbsp;&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style15" colspan="3">
+                        <hr />
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style2">&nbsp;</td>
-                    <td class="auto-style1">
-                        &nbsp;</td>
-                    <td class="auto-style1">
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style2">ID</td>
-                    <td class="auto-style1" colspan="2">
+                    <td class="auto-style2">Codigo</td>
+                    <td class="auto-style17">
                         <asp:TextBox ID="txt_Id" runat="server" Width="200px"></asp:TextBox>
+                    </td>
+                    <td rowspan="6">
+                        <asp:Image ID="img_Imagen" runat="server" CssClass="auto-style16" Height="250px" Width="300px" />
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style3">Descripcion</td>
-                    <td colspan="2">
+                    <td class="auto-style18">
                         <asp:TextBox ID="txt_Descripcion" runat="server" Width="200px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style3">Reducida</td>
-                    <td colspan="2">
+                    <td class="auto-style18">
                         <asp:TextBox ID="txt_Reducida" runat="server" Width="200px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style12">Imagen</td>
-                    <td colspan="2" class="auto-style13">
+                    <td class="auto-style13">
                         
-                        <asp:FileUpload ID="btn_SubirImagen" runat="server" Width="464px" />
+                        <asp:FileUpload ID="btn_SubirImagen" runat="server" Width="464px" CssClass="auto-style17" />
 
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style2">Activo</td>
-                    <td class="auto-style1" colspan="2">
+                    <td class="auto-style17">
                         <asp:CheckBox ID="chk_Activo" runat="server" />
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style2"></td>
-                    <td class="auto-style1" colspan="2">
+                    <td class="auto-style17">
                         <asp:Label ID="lbl_Mensaje" runat="server" Text="Error"></asp:Label>
                         &nbsp;&nbsp;</td>
                 </tr>
@@ -144,19 +157,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style2">&nbsp;</td>
-                    <td class="auto-style1" colspan="2">
-                        &nbsp;<asp:Button ID="btn_Cargar0" runat="server" Text="Aceptar" Width="200px" />
-                        &nbsp;<asp:Button ID="btn_Cargar1" runat="server" Text="Cancelar" Width="200px" />
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style2">&nbsp;</td>
-                    <td class="auto-style1" colspan="2">
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td colspan="3" class="auto-style6">
+                    <td class="auto-style1" colspan="3">&nbsp;<asp:Button ID="btn_Aceptar" runat="server" Text="Aceptar" Width="200px" />
+                        &nbsp;<asp:Button ID="btn_Cancelar" runat="server" Text="Cancelar" Width="200px" />
                         &nbsp;</td>
                 </tr>
                 </table>
