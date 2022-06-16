@@ -72,8 +72,8 @@ Public Class FRM_Roles
         '' CORROBORAR CON LOS NOMBRE EN LA BASE DE DATOS Y SI EL ES .AllowMultiple
         If oDs.Tables(0).Rows.Count > 0 Then
 
-            txt_Id.Text = oDs.Tables(0).Rows(0).Item("ID_Pais")
-            txt_Nombre.Text = oDs.Tables(0).Rows(0).Item("Descripcion")
+            txt_Id.Text = oDs.Tables(0).Rows(0).Item("ID_Rol")
+            txt_Nombre.Text = oDs.Tables(0).Rows(0).Item("Nombre")
             chk_Activo.Checked = oDs.Tables(0).Rows(0).Item("Activo")
             btn_Modificar.Enabled = True
         Else

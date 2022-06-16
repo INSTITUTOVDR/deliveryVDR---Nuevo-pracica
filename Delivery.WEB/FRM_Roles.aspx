@@ -48,7 +48,7 @@
                 <tr>
                     <td colspan="3">
                         <asp:ImageButton ID="btn_Logo" runat="server" Height="200px" ImageAlign="Middle" ImageUrl="~/Imagenes/Logo.png" Width="250px" />
-&nbsp;<span class="auto-style7"><strong>Delivery - Paises</strong></span></td>
+&nbsp;<span class="auto-style7"><strong>Delivery -Roles</strong></span></td>
                 </tr>
                 <tr>
                     <td class="auto-style1" colspan="3">
