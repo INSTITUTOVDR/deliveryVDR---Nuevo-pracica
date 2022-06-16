@@ -131,40 +131,13 @@ Partial Public Class FRM_Roles
     Protected WithEvents txt_Id As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control img_Imagen.
+    '''Control txt_Nombre.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents img_Imagen As Global.System.Web.UI.WebControls.Image
-
-    '''<summary>
-    '''Control txt_Descripcion.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents txt_Descripcion As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Control txt_Reducida.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents txt_Reducida As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Control btn_SubirImagen.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents btn_SubirImagen As Global.System.Web.UI.WebControls.FileUpload
+    Protected WithEvents txt_Nombre As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control chk_Activo.

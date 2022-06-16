@@ -33,21 +33,10 @@
             height: 26px;
             width: 304px;
         }
-        .auto-style16 {
-            margin-left: 0px;
-        }
         .auto-style3 {
             width: 154px;
         }
         .auto-style18 {
-            width: 304px;
-        }
-        .auto-style12 {
-            height: 21px;
-            width: 154px;
-        }
-        .auto-style13 {
-            height: 21px;
             width: 304px;
         }
         </style>
@@ -116,41 +105,32 @@
                     <td class="auto-style17">
                         <asp:TextBox ID="txt_Id" runat="server" Width="200px"></asp:TextBox>
                     </td>
-                    <td rowspan="6">
-                        <asp:Image ID="img_Imagen" runat="server" CssClass="auto-style16" Height="250px" Width="300px" />
-                    </td>
+                    <td>
+                        &nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style3">Descripcion</td>
+                    <td class="auto-style3">Nombre</td>
                     <td class="auto-style18">
-                        <asp:TextBox ID="txt_Descripcion" runat="server" Width="200px"></asp:TextBox>
+                        <asp:TextBox ID="txt_Nombre" runat="server" Width="200px"></asp:TextBox>
                     </td>
-                </tr>
-                <tr>
-                    <td class="auto-style3">Reducida</td>
-                    <td class="auto-style18">
-                        <asp:TextBox ID="txt_Reducida" runat="server" Width="200px"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="auto-style12">Imagen</td>
-                    <td class="auto-style13">
-                        
-                        <asp:FileUpload ID="btn_SubirImagen" runat="server" Width="464px" CssClass="auto-style17" />
-
-                    </td>
+                    <td>
+                        &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style2">Activo</td>
                     <td class="auto-style17">
                         <asp:CheckBox ID="chk_Activo" runat="server" />
                     </td>
+                    <td>
+                        &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style2"></td>
                     <td class="auto-style17">
                         <asp:Label ID="lbl_Mensaje" runat="server" Text="Error"></asp:Label>
                         &nbsp;&nbsp;</td>
+                    <td>
+                        &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style15" colspan="3">
