@@ -2,10 +2,6 @@
 Imports System.Data
 Public Class FRM_Proveedores
     Inherits System.Web.UI.Page
-
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
-    End Sub
 #Region "Formulario"
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Page.IsPostBack = False Then

@@ -122,13 +122,13 @@ Partial Public Class FRM_Proveedores
     Protected WithEvents btn_Limpiar As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''Control txt_Id.
+    '''Control txt_ID_Proveedor.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txt_Id As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txt_ID_Proveedor As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control txt_Nombre.
@@ -138,6 +138,33 @@ Partial Public Class FRM_Proveedores
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents txt_Nombre As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control txt_Cargo.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txt_Cargo As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control ddl_ID_Localidad.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddl_ID_Localidad As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Control ddl_ID_ContactoTipo.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddl_ID_ContactoTipo As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''Control chk_Activo.

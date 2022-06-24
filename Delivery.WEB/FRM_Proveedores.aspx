@@ -103,13 +103,33 @@
                 <tr>
                     <td class="auto-style2">Codigo</td>
                     <td class="auto-style17">
-                        <asp:TextBox ID="txt_Id" runat="server" Width="200px"></asp:TextBox>
+                        <asp:TextBox ID="txt_ID_Proveedor" runat="server" Width="200px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style3">Nombre</td>
+                    <td class="auto-style3">Nombre Compañia</td>
                     <td class="auto-style18">
                         <asp:TextBox ID="txt_Nombre" runat="server" Width="200px"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style3">Cargo Contacto</td>
+                    <td class="auto-style18">
+                        <asp:TextBox ID="txt_Cargo" runat="server" Width="200px"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style3">ID_Localidad</td>
+                    <td class="auto-style18">
+                        <asp:DropDownList ID="ddl_ID_Localidad" runat="server">
+                        </asp:DropDownList>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style3">ID_ContactoTipo</td>
+                    <td class="auto-style18">
+                        <asp:DropDownList ID="ddl_ID_ContactoTipo" runat="server">
+                        </asp:DropDownList>
                     </td>
                 </tr>
                 <tr>
