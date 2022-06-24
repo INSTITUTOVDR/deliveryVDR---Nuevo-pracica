@@ -22,10 +22,10 @@ Public Class FRM_Proveedores
     Private Sub Grilla_PageIndexChanging(sender As Object, e As System.Web.UI.WebControls.GridViewPageEventArgs) Handles Grilla.PageIndexChanging
 
 
-        Dim OPaises As New Proveedor
+        Dim OProveedor As New Proveedor
         Dim oDs As New DataSet
 
-        oDs = OPaises.BuscarTodos
+        oDs = OProveedor.BuscarTodos
 
         Grilla.DataSource = oDs.Tables(0)
         Grilla.PageIndex = e.NewPageIndex
@@ -38,239 +38,211 @@ Public Class FRM_Proveedores
         End If
 
 
-        OPaises = Nothing
+        OProveedor = Nothing
         oDs = Nothing
 
     End Sub
     'ESTE ES EL SELECIONAR DE LA GRILLA
     Protected Sub Grilla_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Grilla.SelectedIndexChanged
 
-            Dim row As GridViewRow = Grilla.SelectedRow
+        Dim row As GridViewRow = Grilla.SelectedRow
 
-            BuscarPorID(row.Cells(1).Text)
+        BuscarPorID(row.Cells(1).Text)
 
 
-            If txt_Descripcion.Text <> "" And txt_Reducida.Text <> "" Then
+        If txt_Nombre.Text <> "" And txt_Cargo.Text <> "" Then
 
-                btn_Modificar.Enabled = True
+            btn_Modificar.Enabled = True
 
-            End If
+        End If
 
-            btn_Agregar.Enabled = True
+        btn_Agregar.Enabled = True
 
-        End Sub
+    End Sub
 
 #End Region
 
 #Region "Procedimientos"
 
-        Private Sub BuscarPorID(ByVal ID As Integer)
+    Private Sub BuscarPorID(ByVal ID As Integer)
 
-            lbl_Mensaje.Text = ""
+        lbl_Mensaje.Text = ""
 
-            Dim oObjeto As New Paises
-            Dim oDs As New DataSet
-            oDs = oObjeto.BuscarPorID(ID)
-            '' CORROBORAR CON LOS NOMBRE EN LA BASE DE DATOS Y SI EL ES .AllowMultiple
-            If oDs.Tables(0).Rows.Count > 0 Then
+        Dim oProveedor As New Proveedor
+        Dim oDs As New DataSet
+        oDs = oProveedor.BuscarPorID(ID)
+        '' CORROBORAR CON LOS NOMBRE EN LA BASE DE DATOS Y SI EL ES .AllowMultiple
+        If oDs.Tables(0).Rows.Count > 0 Then
 
-                txt_Id.Text = oDs.Tables(0).Rows(0).Item("ID_Pais")
-                txt_Descripcion.Text = oDs.Tables(0).Rows(0).Item("Descripcion")
-                txt_Reducida.Text = oDs.Tables(0).Rows(0).Item("Reducida")
-                img_Imagen.ImageUrl = oDs.Tables(0).Rows(0).Item("Imagen")
-                chk_Activo.Checked = oDs.Tables(0).Rows(0).Item("Activo")
-
-                btn_Modificar.Enabled = True
-
-
-            Else
-
-                lbl_Mensaje.Text = "No se encontró el pais con el código ingresado"
-                Limpiar()
-
-            End If
-
-        End Sub
-
-        Private Sub Limpiar()
-
-            HF.Value = 0
-            txt_Id.Text = ""
-            txt_Descripcion.Text = ""
-            txt_Reducida.Text = ""
-            img_Imagen.ImageUrl = ""
-            chk_Activo.Checked = False
-
-        End Sub
-
-        Private Sub Cargar_Grilla()
-            Dim oPaises As New Paises
-            Dim oDs As New DataSet
-
-            oDs = oPaises.BuscarTodos
-
-            Grilla.DataSource = oDs.Tables(0)
-            Grilla.DataBind()
+            txt_ID_Proveedor.Text = oDs.Tables(0).Rows(0).Item("ID_Proveedor")
+            txt_Nombre.Text = oDs.Tables(0).Rows(0).Item("NombreCompañia")
+            txt_Cargo.Text = oDs.Tables(0).Rows(0).Item("CargoContacto")
+            ddl_ID_Localidad.SelectedValue = oDs.Tables(0).Rows(0).Item("ID_Localidad")
+            ddl_ID_ContactoTipo.SelectedValue = oDs.Tables(0).Rows(0).Item("ID_ContactoTipo")
+            chk_Activo.Checked = oDs.Tables(0).Rows(0).Item("Activo")
 
             btn_Modificar.Enabled = True
 
+        Else
 
-            oPaises = Nothing
-            oDs = Nothing
+            lbl_Mensaje.Text = "No se encontró el proveedor con el código ingresado"
+            Limpiar()
 
-        End Sub
-        '' CORROBORAR QUE NO FALTEN BOTONES
+        End If
 
-        Private Sub DesHabilitarComandos()
+    End Sub
 
-            btn_Agregar.Enabled = False
-            btn_Modificar.Enabled = False
-            btn_Limpiar.Enabled = False
-            btn_Aceptar.Enabled = False
-            btn_Cancelar.Enabled = False
+    Private Sub Limpiar()
 
-        End Sub
+        HF.Value = 0
+        txt_ID_Proveedor.Text = ""
+        txt_Nombre.Text = ""
+        txt_Cargo.Text = ""
+        chk_Activo.Checked = False
 
-        Private Sub DesHabilitarCampos()
+    End Sub
 
-            txt_Id.Enabled = False
-            txt_Descripcion.Enabled = False
-            txt_Reducida.Enabled = False
-            btn_SubirImagen.Enabled = False
-            chk_Activo.Enabled = False
+    Private Sub Cargar_Grilla()
+        Dim oProveedor As New Proveedor
+        Dim oDs As New DataSet
 
-        End Sub
+        oDs = oProveedor.BuscarTodos
 
-        Private Function Validar() As Boolean
+        Grilla.DataSource = oDs.Tables(0)
+        Grilla.DataBind()
 
-            Dim oPaises As New Paises
-            Dim oDs As New DataSet
-
-            oDs = oPaises.BuscarPorID(txt_Id.Text)
-
-            If oDs.Tables(0).Rows.Count > 0 Then
-
-                Return False
-
-            End If
+        btn_Modificar.Enabled = True
 
 
-            Return True
+        oProveedor = Nothing
+        oDs = Nothing
 
-        End Function
+    End Sub
+    '' CORROBORAR QUE NO FALTEN BOTONES
+
+    Private Sub DesHabilitarComandos()
+
+        btn_Agregar.Enabled = False
+        btn_Modificar.Enabled = False
+        btn_Limpiar.Enabled = False
+        btn_Aceptar.Enabled = False
+        btn_Cancelar.Enabled = False
+
+    End Sub
+
+    Private Sub DesHabilitarCampos()
+
+        txt_ID_Proveedor.Enabled = False
+        txt_Nombre.Enabled = False
+        txt_Cargo.Enabled = False
+        chk_Activo.Enabled = False
+
+    End Sub
+
+    Private Function Validar() As Boolean
+
+        Dim oProveedor As New Proveedor
+        Dim oDs As New DataSet
+
+        oDs = oProveedor.BuscarPorID(txt_ID_Proveedor.Text)
+
+        If oDs.Tables(0).Rows.Count > 0 Then
+
+            Return False
+
+        End If
+
+        Return True
+
+    End Function
 
 #End Region
 
 #Region "Botones de Comando"
-        ''
-        Protected Sub btn_Aceptar_Click(sender As Object, e As EventArgs) Handles btn_Aceptar.Click
-
-            Select Case HF.Value
-                Case 1
-                    If Validar() = True Then
-                        If txt_Descripcion.Text <> Nothing And txt_Reducida.Text <> Nothing And btn_SubirImagen.HasFile = True Then
-                            Dim oPaises As New Paises
-                            Dim oDs As New Data.DataSet
-                            Dim urlImagen As String
-                            urlImagen = "/Imagenes/"
-
-                            Dim nombre As String = btn_SubirImagen.FileName
-
-                            btn_SubirImagen.SaveAs(HttpContext.Current.Server.MapPath("./Imagenes/") & nombre)
-
-
-                            urlImagen = urlImagen & nombre
-
-                            oPaises = New Paises
-                            oPaises.Agregar(txt_Descripcion.Text, txt_Reducida.Text, urlImagen, 1)
-                            Cargar_Grilla()
-                            Limpiar()
-                            lbl_Mensaje.ForeColor = Drawing.Color.Green
-                            lbl_Mensaje.Text = "Cargado Correctamente :)"
-                            oPaises = Nothing
-                        Else
-                            lbl_Mensaje.ForeColor = Drawing.Color.Red
-                            lbl_Mensaje.Text = "Complete los campos vacios :("
-
-                        End If
-                    End If
-
-
-                Case 2
-                    If txt_Id.Text <> Nothing And txt_Descripcion.Text <> Nothing And txt_Reducida.Text <> Nothing And btn_SubirImagen.HasFile = True Then
-                        Dim OPaises As New Paises
+    Protected Sub btn_Aceptar_Click(sender As Object, e As EventArgs) Handles btn_Aceptar.Click
+        Select Case HF.Value
+            Case 1
+                If Validar() = True Then
+                    If txt_Nombre.Text <> Nothing And txt_Cargo.Text <> Nothing Then
+                        Dim oProveedor As New Proveedor
                         Dim oDs As New Data.DataSet
-                        Dim urlImagen As String
-                        urlImagen = "/Imagenes/"
 
-                        Dim nombre As String = btn_SubirImagen.FileName
-
-                        btn_SubirImagen.SaveAs(HttpContext.Current.Server.MapPath("./Imagenes/") & nombre)
-
-
-                        urlImagen = urlImagen & nombre
-
-                        OPaises = New Paises
-                        oDs = New Data.DataSet
-                        oDs = OPaises.BuscarPorID(txt_Id.Text)
-                        If oDs.Tables(0).Rows.Count > 0 Then
-                            oDs = New Data.DataSet
-                            OPaises = New Paises
-                            OPaises.Modificar(txt_Id.Text, txt_Descripcion.Text, txt_Reducida.Text, urlImagen, 1)
-                            Cargar_Grilla()
-                            Limpiar()
-                            lbl_Mensaje.ForeColor = Drawing.Color.Green
-                            lbl_Mensaje.Text = "Modificado Correctamente :)"
-                            OPaises = Nothing
-                        Else
-                            lbl_Mensaje.ForeColor = Drawing.Color.Red
-                            lbl_Mensaje.Text = "Error ID Incorrecto :("
-                            OPaises = Nothing
-                        End If
+                        oProveedor = New Proveedor
+                        oProveedor.Agregar(ddl_ID_Localidad.SelectedValue, ddl_ID_ContactoTipo.SelectedValue, txt_Nombre.Text, txt_Cargo.Text, 1)
+                        Cargar_Grilla()
+                        Limpiar()
+                        lbl_Mensaje.ForeColor = Drawing.Color.Green
+                        lbl_Mensaje.Text = "Cargado Correctamente :)"
+                        oProveedor = Nothing
                     Else
                         lbl_Mensaje.ForeColor = Drawing.Color.Red
                         lbl_Mensaje.Text = "Complete los campos vacios :("
+
                     End If
+                End If
+            Case 2
+                If txt_ID_Proveedor.Text <> Nothing And txt_Nombre.Text <> Nothing And txt_Cargo.Text <> Nothing Then
+                    Dim OProveedor As New Proveedor
+                    Dim oDs As New Data.DataSet
 
-            End Select
-            Limpiar()
-            DesHabilitarCampos()
-            DesHabilitarComandos()
-            Cargar_Grilla()
-        End Sub
+                    OProveedor = New Proveedor
+                    oDs = New Data.DataSet
+                    oDs = OProveedor.BuscarPorID(txt_ID_Proveedor.Text)
+                    If oDs.Tables(0).Rows.Count > 0 Then
+                        oDs = New Data.DataSet
+                        OProveedor = New Proveedor
+                        OProveedor.Modificar(txt_ID_Proveedor.Text, ddl_ID_Localidad.SelectedValue, ddl_ID_ContactoTipo.SelectedValue, txt_Nombre.Text, txt_Cargo.Text, 1)
+                        Cargar_Grilla()
+                        Limpiar()
+                        lbl_Mensaje.ForeColor = Drawing.Color.Green
+                        lbl_Mensaje.Text = "Modificado Correctamente :)"
+                        OProveedor = Nothing
+                    Else
+                        lbl_Mensaje.ForeColor = Drawing.Color.Red
+                        lbl_Mensaje.Text = "Error ID Incorrecto :("
+                        OProveedor = Nothing
+                    End If
+                Else
+                    lbl_Mensaje.ForeColor = Drawing.Color.Red
+                    lbl_Mensaje.Text = "Complete los campos vacios :("
+                End If
 
-        Protected Sub btn_Cargar_Click(sender As Object, e As EventArgs) Handles btn_Agregar.Click
-            DesHabilitarComandos()
-            Limpiar()
+        End Select
+        Limpiar()
+        DesHabilitarCampos()
+        DesHabilitarComandos()
+        Cargar_Grilla()
+    End Sub
 
-            btn_Aceptar.Enabled = True
-            btn_Cancelar.Enabled = True
-            txt_Descripcion.Enabled = True
-            txt_Reducida.Enabled = True
-            btn_SubirImagen.Enabled = True
-            chk_Activo.Enabled = True
+    Protected Sub btn_Cargar_Click(sender As Object, e As EventArgs) Handles btn_Agregar.Click
+        DesHabilitarComandos()
+        Limpiar()
 
-            'EL VALOR 1 ES PARA AGREGAR
-            HF.Value = 1
+        btn_Aceptar.Enabled = True
+        btn_Cancelar.Enabled = True
+        txt_Nombre.Enabled = True
+        txt_Cargo.Enabled = True
+        chk_Activo.Enabled = True
 
+        'EL VALOR 1 ES PARA AGREGAR
+        HF.Value = 1
 
+    End Sub
 
-        End Sub
+    Protected Sub btn_Modificar_Click(sender As Object, e As EventArgs) Handles btn_Modificar.Click
+        DesHabilitarComandos()
+        btn_Aceptar.Enabled = True
+        btn_Cancelar.Enabled = True
+        txt_Descripcion.Enabled = True
+        txt_Reducida.Enabled = True
+        btn_SubirImagen.Enabled = True
+        chk_Activo.Enabled = True
+        txt_ID_Proveedor.Enabled = False
 
-        Protected Sub btn_Modificar_Click(sender As Object, e As EventArgs) Handles btn_Modificar.Click
-            DesHabilitarComandos()
-            btn_Aceptar.Enabled = True
-            btn_Cancelar.Enabled = True
-            txt_Descripcion.Enabled = True
-            txt_Reducida.Enabled = True
-            btn_SubirImagen.Enabled = True
-            chk_Activo.Enabled = True
-            txt_Id.Enabled = False
-
-            'EL VALOR 2 ES PARA MODIFICAR
-            HF.Value = 2
-        End Sub
-        Protected Sub btn_Cancelar_Click(sender As Object, e As EventArgs) Handles btn_Cancelar.Click
+        'EL VALOR 2 ES PARA MODIFICAR
+        HF.Value = 2
+    End Sub
+    Protected Sub btn_Cancelar_Click(sender As Object, e As EventArgs) Handles btn_Cancelar.Click
             Limpiar()
             Cargar_Grilla()
             DesHabilitarComandos()
