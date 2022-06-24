@@ -92,11 +92,19 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FRM_Proveedores.aspx" />
     <Content Include="FRM_Roles.aspx" />
     <Content Include="Imagenes\Logo.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FRM_Proveedores.aspx.designer.vb">
+      <DependentUpon>FRM_Proveedores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FRM_Proveedores.aspx.vb">
+      <DependentUpon>FRM_Proveedores.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="FRM_Roles.aspx.designer.vb">
       <DependentUpon>FRM_Roles.aspx</DependentUpon>
     </Compile>
