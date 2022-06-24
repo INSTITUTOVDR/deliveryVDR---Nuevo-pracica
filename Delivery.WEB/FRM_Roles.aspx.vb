@@ -2,6 +2,7 @@
 Imports System.Data
 Public Class FRM_Roles
     Inherits System.Web.UI.Page
+
 #Region "Formulario"
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Page.IsPostBack = False Then
@@ -22,9 +23,10 @@ Public Class FRM_Roles
 
 
         Dim ORoles As New Roles
+
         Dim oDs As New DataSet
 
-        oDs = ORoles.BuscarTodos()
+        oDs = ORoles.BuscarTodos
 
         Grilla.DataSource = oDs.Tables(0)
         Grilla.PageIndex = e.NewPageIndex
@@ -45,6 +47,7 @@ Public Class FRM_Roles
     Protected Sub Grilla_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Grilla.SelectedIndexChanged
 
         Dim row As GridViewRow = Grilla.SelectedRow
+
         BuscarPorID(row.Cells(1).Text)
 
 
@@ -75,8 +78,12 @@ Public Class FRM_Roles
             txt_Id.Text = oDs.Tables(0).Rows(0).Item("ID_Rol")
             txt_Nombre.Text = oDs.Tables(0).Rows(0).Item("Nombre")
             chk_Activo.Checked = oDs.Tables(0).Rows(0).Item("Activo")
+
             btn_Modificar.Enabled = True
+
+
         Else
+
             lbl_Mensaje.Text = "No se encontró el rol con el código ingresado"
             Limpiar()
 
@@ -141,6 +148,7 @@ Public Class FRM_Roles
             Return False
 
         End If
+
 
         Return True
 
@@ -229,7 +237,6 @@ Public Class FRM_Roles
         btn_Aceptar.Enabled = True
         btn_Cancelar.Enabled = True
         txt_Nombre.Enabled = True
-
         chk_Activo.Enabled = True
         txt_Id.Enabled = False
 
