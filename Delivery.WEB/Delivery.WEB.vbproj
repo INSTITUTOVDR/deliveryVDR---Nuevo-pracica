@@ -94,6 +94,7 @@
   <ItemGroup>
     <Content Include="FRM_Proveedores.aspx" />
     <Content Include="FRM_Roles.aspx" />
+    <Content Include="FRM_TipoProducto.aspx" />
     <Content Include="Imagenes\Logo.png" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -110,6 +111,13 @@
     </Compile>
     <Compile Include="FRM_Roles.aspx.vb">
       <DependentUpon>FRM_Roles.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="FRM_TipoProducto.aspx.designer.vb">
+      <DependentUpon>FRM_TipoProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FRM_TipoProducto.aspx.vb">
+      <DependentUpon>FRM_TipoProducto.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />

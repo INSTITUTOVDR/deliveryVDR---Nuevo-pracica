@@ -1,6 +1,6 @@
 ﻿Imports Delivery.AD
 Imports System.Data
-Public Class FRM_Proveedores
+Public Class FRM_TipoProducto
     Inherits System.Web.UI.Page
 
 #Region "Formulario"
@@ -11,7 +11,7 @@ Public Class FRM_Proveedores
             DesHabilitarComandos()
             btn_Agregar.Enabled = True
             btn_Limpiar.Enabled = True
-            txt_ID_Proveedor.Enabled = True
+            txt_ID_TipoProducto.Enabled = True
 
         End If
     End Sub
@@ -22,23 +22,23 @@ Public Class FRM_Proveedores
     Private Sub Grilla_PageIndexChanging(sender As Object, e As System.Web.UI.WebControls.GridViewPageEventArgs) Handles Grilla.PageIndexChanging
 
 
-        Dim OProveedor As New Proveedor
+        Dim OTipoProducto As New TipoProducto
         Dim oDs As New DataSet
 
-        oDs = OProveedor.BuscarTodos
+        oDs = OTipoProducto.BuscarTodos
 
         Grilla.DataSource = oDs.Tables(0)
         Grilla.PageIndex = e.NewPageIndex
         Grilla.DataBind()
 
-        If txt_ID_Proveedor.Text <> "" Then
+        If txt_ID_TipoProducto.Text <> "" Then
 
             btn_Modificar.Enabled = True
 
         End If
 
 
-        OProveedor = Nothing
+        OTipoProducto = Nothing
         oDs = Nothing
 
     End Sub
@@ -50,7 +50,7 @@ Public Class FRM_Proveedores
         BuscarPorID(row.Cells(1).Text)
 
 
-        If txt_Nombre.Text <> "" And txt_Cargo.Text <> "" Then
+        If txt_Clasificacion.Text <> "" Then
 
             btn_Modificar.Enabled = True
 
@@ -64,28 +64,24 @@ Public Class FRM_Proveedores
 
 #Region "Procedimientos"
 
-    Private Sub BuscarPorID(ByVal ID_Proveedor As Integer)
+    Private Sub BuscarPorID(ByVal ID_Tipo_Producto As Integer)
 
         lbl_Mensaje.Text = ""
 
-        Dim oProveedor As New Proveedor
+        Dim oTipoProducto As New TipoProducto
         Dim oDs As New DataSet
-        oDs = oProveedor.BuscarPorID(ID_Proveedor)
+        oDs = oTipoProducto.BuscarPorID(ID_Tipo_Producto)
         '' CORROBORAR CON LOS NOMBRE EN LA BASE DE DATOS Y SI EL ES .AllowMultiple
         If oDs.Tables(0).Rows.Count > 0 Then
 
-            txt_ID_Proveedor.Text = oDs.Tables(0).Rows(0).Item("ID_Proveedor")
-            txt_Nombre.Text = oDs.Tables(0).Rows(0).Item("NombreCompañia")
-            txt_Cargo.Text = oDs.Tables(0).Rows(0).Item("CargoContacto")
-            ddl_ID_Localidad.SelectedValue = oDs.Tables(0).Rows(0).Item("ID_Localidad")
-            ddl_ID_ContactoTipo.SelectedValue = oDs.Tables(0).Rows(0).Item("ID_ContactoTipo")
-            chk_Activo.Checked = oDs.Tables(0).Rows(0).Item("Activo")
+            txt_ID_TipoProducto.Text = oDs.Tables(0).Rows(0).Item("ID_Tipo_Producto")
+            txt_Clasificacion.Text = oDs.Tables(0).Rows(0).Item("Clasificacion")
 
             btn_Modificar.Enabled = True
 
         Else
 
-            lbl_Mensaje.Text = "No se encontró el proveedor con el código ingresado"
+            lbl_Mensaje.Text = "No se encontró el tipo de producto con el código ingresado"
             Limpiar()
 
         End If
@@ -95,18 +91,17 @@ Public Class FRM_Proveedores
     Private Sub Limpiar()
 
         HF.Value = 0
-        txt_ID_Proveedor.Text = ""
-        txt_Nombre.Text = ""
-        txt_Cargo.Text = ""
-        chk_Activo.Checked = False
+        txt_ID_TipoProducto.Text = ""
+        txt_Clasificacion.Text = ""
+
 
     End Sub
 
     Private Sub Cargar_Grilla()
-        Dim oProveedor As New Proveedor
+        Dim oTipoProducto As New TipoProducto
         Dim oDs As New DataSet
 
-        oDs = oProveedor.BuscarTodos
+        oDs = oTipoProducto.BuscarTodos
 
         Grilla.DataSource = oDs.Tables(0)
         Grilla.DataBind()
@@ -114,7 +109,7 @@ Public Class FRM_Proveedores
         btn_Modificar.Enabled = True
 
 
-        oProveedor = Nothing
+        oTipoProducto = Nothing
         oDs = Nothing
 
     End Sub
@@ -132,19 +127,18 @@ Public Class FRM_Proveedores
 
     Private Sub DesHabilitarCampos()
 
-        txt_ID_Proveedor.Enabled = False
-        txt_Nombre.Enabled = False
-        txt_Cargo.Enabled = False
-        chk_Activo.Enabled = False
+        txt_ID_TipoProducto.Enabled = False
+        txt_Clasificacion.Enabled = False
+
 
     End Sub
 
     Private Function Validar() As Boolean
 
-        Dim oProveedor As New Proveedor
+        Dim oTipoProducto As New TipoProducto
         Dim oDs As New DataSet
 
-        oDs = oProveedor.BuscarPorID(txt_ID_Proveedor.Text)
+        oDs = oTipoProducto.BuscarPorID(txt_ID_TipoProducto.Text)
 
         If oDs.Tables(0).Rows.Count > 0 Then
 
@@ -163,17 +157,17 @@ Public Class FRM_Proveedores
         Select Case HF.Value
             Case 1
                 If Validar() = True Then
-                    If txt_Nombre.Text <> Nothing And txt_Cargo.Text <> Nothing Then
-                        Dim oProveedor As New Proveedor
+                    If txt_Clasificacion.Text <> Nothing Then
+                        Dim oTipoProducto As New TipoProducto
                         Dim oDs As New Data.DataSet
 
-                        oProveedor = New Proveedor
-                        oProveedor.Agregar(txt_Nombre.Text, txt_Cargo.Text, ddl_ID_Localidad.SelectedValue, ddl_ID_ContactoTipo.SelectedValue, 1)
+                        oTipoProducto = New TipoProducto
+                        oTipoProducto.Agregar(txt_Clasificacion.Text)
                         Cargar_Grilla()
                         Limpiar()
                         lbl_Mensaje.ForeColor = Drawing.Color.Green
                         lbl_Mensaje.Text = "Cargado Correctamente :)"
-                        oProveedor = Nothing
+                        oTipoProducto = Nothing
                     Else
                         lbl_Mensaje.ForeColor = Drawing.Color.Red
                         lbl_Mensaje.Text = "Complete los campos vacios :("
@@ -181,26 +175,26 @@ Public Class FRM_Proveedores
                     End If
                 End If
             Case 2
-                If txt_ID_Proveedor.Text <> Nothing And txt_Nombre.Text <> Nothing And txt_Cargo.Text <> Nothing Then
-                    Dim OProveedor As New Proveedor
+                If txt_ID_TipoProducto.Text <> Nothing And txt_Clasificacion.Text <> Nothing Then
+                    Dim OTipoProducto As New TipoProducto
                     Dim oDs As New Data.DataSet
 
-                    OProveedor = New Proveedor
+                    OTipoProducto = New TipoProducto
                     oDs = New Data.DataSet
-                    oDs = OProveedor.BuscarPorID(txt_ID_Proveedor.Text)
+                    oDs = OTipoProducto.BuscarPorID(txt_ID_TipoProducto.Text)
                     If oDs.Tables(0).Rows.Count > 0 Then
                         oDs = New Data.DataSet
-                        OProveedor = New Proveedor
-                        OProveedor.Modificar(txt_ID_Proveedor.Text, txt_Nombre.Text, txt_Cargo.Text, ddl_ID_Localidad.SelectedValue, ddl_ID_ContactoTipo.SelectedValue, 1)
+                        OTipoProducto = New TipoProducto
+                        OTipoProducto.Modificar(txt_ID_TipoProducto.Text, txt_Clasificacion.Text)
                         Cargar_Grilla()
                         Limpiar()
                         lbl_Mensaje.ForeColor = Drawing.Color.Green
                         lbl_Mensaje.Text = "Modificado Correctamente :)"
-                        OProveedor = Nothing
+                        OTipoProducto = Nothing
                     Else
                         lbl_Mensaje.ForeColor = Drawing.Color.Red
                         lbl_Mensaje.Text = "Error ID Incorrecto :("
-                        OProveedor = Nothing
+                        OTipoProducto = Nothing
                     End If
                 Else
                     lbl_Mensaje.ForeColor = Drawing.Color.Red
@@ -220,9 +214,7 @@ Public Class FRM_Proveedores
 
         btn_Aceptar.Enabled = True
         btn_Cancelar.Enabled = True
-        txt_Nombre.Enabled = True
-        txt_Cargo.Enabled = True
-        chk_Activo.Enabled = True
+        txt_Clasificacion.Enabled = True
 
         'EL VALOR 1 ES PARA AGREGAR
         HF.Value = 1
@@ -233,21 +225,19 @@ Public Class FRM_Proveedores
         DesHabilitarComandos()
         btn_Aceptar.Enabled = True
         btn_Cancelar.Enabled = True
-        txt_Nombre.Enabled = True
-        txt_Cargo.Enabled = True
-        chk_Activo.Enabled = True
-        txt_ID_Proveedor.Enabled = False
+        txt_Clasificacion.Enabled = True
+        txt_ID_TipoProducto.Enabled = False
 
         'EL VALOR 2 ES PARA MODIFICAR
         HF.Value = 2
     End Sub
     Protected Sub btn_Cancelar_Click(sender As Object, e As EventArgs) Handles btn_Cancelar.Click
-            Limpiar()
-            Cargar_Grilla()
-            DesHabilitarComandos()
-            btn_Agregar.Enabled = True
-            btn_Limpiar.Enabled = True
-        txt_ID_Proveedor.Enabled = True
+        Limpiar()
+        Cargar_Grilla()
+        DesHabilitarComandos()
+        btn_Agregar.Enabled = True
+        btn_Limpiar.Enabled = True
+        txt_ID_TipoProducto.Enabled = True
     End Sub
 #End Region
 
