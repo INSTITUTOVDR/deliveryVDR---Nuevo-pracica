@@ -92,13 +92,20 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FRM_ItemTipo.aspx" />
     <Content Include="FRM_Proveedores.aspx" />
     <Content Include="FRM_Roles.aspx" />
-    <Content Include="FRM_TipoProducto.aspx" />
     <Content Include="Imagenes\Logo.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FRM_ItemTipo.aspx.designer.vb">
+      <DependentUpon>FRM_ItemTipo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FRM_ItemTipo.aspx.vb">
+      <DependentUpon>FRM_ItemTipo.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="FRM_Proveedores.aspx.designer.vb">
       <DependentUpon>FRM_Proveedores.aspx</DependentUpon>
     </Compile>
@@ -111,13 +118,6 @@
     </Compile>
     <Compile Include="FRM_Roles.aspx.vb">
       <DependentUpon>FRM_Roles.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="FRM_TipoProducto.aspx.designer.vb">
-      <DependentUpon>FRM_TipoProducto.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="FRM_TipoProducto.aspx.vb">
-      <DependentUpon>FRM_TipoProducto.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />

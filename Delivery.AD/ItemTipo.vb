@@ -3,7 +3,7 @@ Imports System.Data
 Imports System.Data.SqlClient
 Imports System.IO
 Imports Microsoft.Practices.EnterpriseLibrary.Data
-Public Class TipoProducto
+Public Class ItemTipo
     Dim oDatabase As Database
     Public Sub New()
 
@@ -11,9 +11,9 @@ Public Class TipoProducto
 
     End Sub
 
-    Public Function BuscarPorID(ByVal ID_Tipo_Producto As Integer) As DataSet
+    Public Function BuscarPorID(ByVal ID_ItemTipo As Integer) As DataSet
         Try
-            Return oDatabase.ExecuteDataSet("TiposProductos_BuscarPorID", ID_Tipo_Producto)
+            Return oDatabase.ExecuteDataSet("ItemTipos_BuscarPorID", ID_ItemTipo)
         Catch ex As System.Exception
             Throw ex
         End Try
@@ -21,7 +21,7 @@ Public Class TipoProducto
 
     Public Function BuscarTodos() As DataSet
         Try
-            Return oDatabase.ExecuteDataSet("TiposProductos_BuscarTodos")
+            Return oDatabase.ExecuteDataSet("ItemTipos_BuscarTodos")
         Catch ex As System.Exception
             Throw ex
         End Try
@@ -29,15 +29,15 @@ Public Class TipoProducto
 
     Public Function Agregar(ByVal Clasificacion As String) As Double
         Try
-            Return oDatabase.ExecuteScalar("TiposProductos_Agregar", Clasificacion)
+            Return oDatabase.ExecuteScalar("ItemTipos_Agregar", Clasificacion)
         Catch ex As System.Exception
             Throw ex
         End Try
     End Function
 
-    Public Function Modificar(ByVal ID_Tipo_Producto As Integer, ByVal Clasificacion As String) As DataSet
+    Public Function Modificar(ByVal ID_ItemTipo As Integer, ByVal Clasificacion As String) As DataSet
         Try
-            Return oDatabase.ExecuteDataSet("TiposProductos_Modificar", ID_Tipo_Producto, Clasificacion)
+            Return oDatabase.ExecuteDataSet("ItemTipos_Modificar", ID_ItemTipo, Clasificacion)
         Catch ex As System.Exception
             Throw ex
         End Try

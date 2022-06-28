@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="FRM_TipoProducto.aspx.vb" Inherits="Delivery.WEB.FRM_TipoProducto" %>
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="FRM_ItemTipo.aspx.vb" Inherits="Delivery.WEB.FRM_ItemTipo" %>
 
 <!DOCTYPE html>
 
@@ -44,13 +44,13 @@
         </style>
 </head>
 <body>
-    <form id="form2" runat="server">
+    <form id="form1" runat="server">
         <div>
             <table style="width:100%;">
                 <tr>
                     <td colspan="2">
                         <asp:ImageButton ID="btn_Logo" runat="server" Height="200px" ImageAlign="Middle" ImageUrl="~/Imagenes/Logo.png" Width="250px" />
-&nbsp;<span class="auto-style7"><strong>Delivery- Tipos de Productos</strong></span></td>
+&nbsp;<span class="auto-style7"><strong>Delivery -Item Tipo</strong></span></td>
                 </tr>
                 <tr>
                     <td class="auto-style1" colspan="2">
@@ -104,7 +104,7 @@
                 <tr>
                     <td class="auto-style2">Codigo</td>
                     <td class="auto-style17">
-                        <asp:TextBox ID="txt_ID_TipoProducto" runat="server" Width="200px"></asp:TextBox>
+                        <asp:TextBox ID="txt_ID_ItemTipo" runat="server" Width="200px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -130,10 +130,6 @@
                         &nbsp;</td>
                 </tr>
                 </table>
-        </div>
-    </form>
-    <form id="form1" runat="server">
-        <div>
         </div>
     </form>
 </body>

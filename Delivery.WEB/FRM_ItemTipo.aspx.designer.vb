@@ -11,16 +11,16 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class FRM_TipoProducto
+Partial Public Class FRM_ItemTipo
 
     '''<summary>
-    '''Control form2.
+    '''Control form1.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents form2 As Global.System.Web.UI.HtmlControls.HtmlForm
+    Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
     '''Control btn_Logo.
@@ -122,13 +122,13 @@ Partial Public Class FRM_TipoProducto
     Protected WithEvents btn_Limpiar As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''Control txt_ID_TipoProducto.
+    '''Control txt_ID_ItemTipo.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txt_ID_TipoProducto As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txt_ID_ItemTipo As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control txt_Clasificacion.
@@ -165,13 +165,4 @@ Partial Public Class FRM_TipoProducto
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents btn_Cancelar As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''Control form1.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 End Class

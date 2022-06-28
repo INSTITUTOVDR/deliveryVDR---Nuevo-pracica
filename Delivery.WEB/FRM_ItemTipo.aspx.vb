@@ -1,6 +1,6 @@
 ﻿Imports Delivery.AD
 Imports System.Data
-Public Class FRM_TipoProducto
+Public Class FRM_ItemTipo
     Inherits System.Web.UI.Page
 
 #Region "Formulario"
@@ -11,7 +11,7 @@ Public Class FRM_TipoProducto
             DesHabilitarComandos()
             btn_Agregar.Enabled = True
             btn_Limpiar.Enabled = True
-            txt_ID_TipoProducto.Enabled = True
+            txt_ID_ItemTipo.Enabled = True
 
         End If
     End Sub
@@ -22,23 +22,23 @@ Public Class FRM_TipoProducto
     Private Sub Grilla_PageIndexChanging(sender As Object, e As System.Web.UI.WebControls.GridViewPageEventArgs) Handles Grilla.PageIndexChanging
 
 
-        Dim OTipoProducto As New TipoProducto
+        Dim OItemTipo As New ItemTipo
         Dim oDs As New DataSet
 
-        oDs = OTipoProducto.BuscarTodos
+        oDs = OItemTipo.BuscarTodos
 
         Grilla.DataSource = oDs.Tables(0)
         Grilla.PageIndex = e.NewPageIndex
         Grilla.DataBind()
 
-        If txt_ID_TipoProducto.Text <> "" Then
+        If txt_ID_ItemTipo.Text <> "" Then
 
             btn_Modificar.Enabled = True
 
         End If
 
 
-        OTipoProducto = Nothing
+        OItemTipo = Nothing
         oDs = Nothing
 
     End Sub
@@ -64,24 +64,24 @@ Public Class FRM_TipoProducto
 
 #Region "Procedimientos"
 
-    Private Sub BuscarPorID(ByVal ID_Tipo_Producto As Integer)
+    Private Sub BuscarPorID(ByVal ID_ItemTipo As Integer)
 
         lbl_Mensaje.Text = ""
 
-        Dim oTipoProducto As New TipoProducto
+        Dim OItemTipo As New ItemTipo
         Dim oDs As New DataSet
-        oDs = oTipoProducto.BuscarPorID(ID_Tipo_Producto)
+        oDs = OItemTipo.BuscarPorID(ID_ItemTipo)
         '' CORROBORAR CON LOS NOMBRE EN LA BASE DE DATOS Y SI EL ES .AllowMultiple
         If oDs.Tables(0).Rows.Count > 0 Then
 
-            txt_ID_TipoProducto.Text = oDs.Tables(0).Rows(0).Item("ID_Tipo_Producto")
+            txt_ID_ItemTipo.Text = oDs.Tables(0).Rows(0).Item("ID_ItemTipo")
             txt_Clasificacion.Text = oDs.Tables(0).Rows(0).Item("Clasificacion")
 
             btn_Modificar.Enabled = True
 
         Else
 
-            lbl_Mensaje.Text = "No se encontró el tipo de producto con el código ingresado"
+            lbl_Mensaje.Text = "No se encontró el tipo de item con el código ingresado"
             Limpiar()
 
         End If
@@ -91,17 +91,17 @@ Public Class FRM_TipoProducto
     Private Sub Limpiar()
 
         HF.Value = 0
-        txt_ID_TipoProducto.Text = ""
+        txt_ID_ItemTipo.Text = ""
         txt_Clasificacion.Text = ""
 
 
     End Sub
 
     Private Sub Cargar_Grilla()
-        Dim oTipoProducto As New TipoProducto
+        Dim OItemTipo As New ItemTipo
         Dim oDs As New DataSet
 
-        oDs = oTipoProducto.BuscarTodos
+        oDs = OItemTipo.BuscarTodos
 
         Grilla.DataSource = oDs.Tables(0)
         Grilla.DataBind()
@@ -109,7 +109,7 @@ Public Class FRM_TipoProducto
         btn_Modificar.Enabled = True
 
 
-        oTipoProducto = Nothing
+        OItemTipo = Nothing
         oDs = Nothing
 
     End Sub
@@ -127,7 +127,7 @@ Public Class FRM_TipoProducto
 
     Private Sub DesHabilitarCampos()
 
-        txt_ID_TipoProducto.Enabled = False
+        txt_ID_ItemTipo.Enabled = False
         txt_Clasificacion.Enabled = False
 
 
@@ -135,10 +135,10 @@ Public Class FRM_TipoProducto
 
     Private Function Validar() As Boolean
 
-        Dim oTipoProducto As New TipoProducto
+        Dim OItemTipo As New ItemTipo
         Dim oDs As New DataSet
 
-        oDs = oTipoProducto.BuscarPorID(txt_ID_TipoProducto.Text)
+        oDs = OItemTipo.BuscarPorID(txt_ID_ItemTipo.Text)
 
         If oDs.Tables(0).Rows.Count > 0 Then
 
@@ -158,16 +158,16 @@ Public Class FRM_TipoProducto
             Case 1
                 If Validar() = True Then
                     If txt_Clasificacion.Text <> Nothing Then
-                        Dim oTipoProducto As New TipoProducto
+                        Dim OItemTipo As New ItemTipo
                         Dim oDs As New Data.DataSet
 
-                        oTipoProducto = New TipoProducto
-                        oTipoProducto.Agregar(txt_Clasificacion.Text)
+                        OItemTipo = New ItemTipo
+                        OItemTipo.Agregar(txt_Clasificacion.Text)
                         Cargar_Grilla()
                         Limpiar()
                         lbl_Mensaje.ForeColor = Drawing.Color.Green
                         lbl_Mensaje.Text = "Cargado Correctamente :)"
-                        oTipoProducto = Nothing
+                        OItemTipo = Nothing
                     Else
                         lbl_Mensaje.ForeColor = Drawing.Color.Red
                         lbl_Mensaje.Text = "Complete los campos vacios :("
@@ -175,26 +175,26 @@ Public Class FRM_TipoProducto
                     End If
                 End If
             Case 2
-                If txt_ID_TipoProducto.Text <> Nothing And txt_Clasificacion.Text <> Nothing Then
-                    Dim OTipoProducto As New TipoProducto
+                If txt_ID_ItemTipo.Text <> Nothing And txt_Clasificacion.Text <> Nothing Then
+                    Dim OItemTipo As New ItemTipo
                     Dim oDs As New Data.DataSet
 
-                    OTipoProducto = New TipoProducto
+                    OItemTipo = New ItemTipo
                     oDs = New Data.DataSet
-                    oDs = OTipoProducto.BuscarPorID(txt_ID_TipoProducto.Text)
+                    oDs = OItemTipo.BuscarPorID(txt_ID_ItemTipo.Text)
                     If oDs.Tables(0).Rows.Count > 0 Then
                         oDs = New Data.DataSet
-                        OTipoProducto = New TipoProducto
-                        OTipoProducto.Modificar(txt_ID_TipoProducto.Text, txt_Clasificacion.Text)
+                        OItemTipo = New ItemTipo
+                        OItemTipo.Modificar(txt_ID_ItemTipo.Text, txt_Clasificacion.Text)
                         Cargar_Grilla()
                         Limpiar()
                         lbl_Mensaje.ForeColor = Drawing.Color.Green
                         lbl_Mensaje.Text = "Modificado Correctamente :)"
-                        OTipoProducto = Nothing
+                        OItemTipo = Nothing
                     Else
                         lbl_Mensaje.ForeColor = Drawing.Color.Red
                         lbl_Mensaje.Text = "Error ID Incorrecto :("
-                        OTipoProducto = Nothing
+                        OItemTipo = Nothing
                     End If
                 Else
                     lbl_Mensaje.ForeColor = Drawing.Color.Red
@@ -226,7 +226,7 @@ Public Class FRM_TipoProducto
         btn_Aceptar.Enabled = True
         btn_Cancelar.Enabled = True
         txt_Clasificacion.Enabled = True
-        txt_ID_TipoProducto.Enabled = False
+        txt_ID_ItemTipo.Enabled = False
 
         'EL VALOR 2 ES PARA MODIFICAR
         HF.Value = 2
@@ -237,8 +237,7 @@ Public Class FRM_TipoProducto
         DesHabilitarComandos()
         btn_Agregar.Enabled = True
         btn_Limpiar.Enabled = True
-        txt_ID_TipoProducto.Enabled = True
+        txt_ID_ItemTipo.Enabled = True
     End Sub
 #End Region
-
 End Class
