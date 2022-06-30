@@ -99,6 +99,8 @@
     <Compile Include="Proveedor.vb" />
     <Compile Include="Roles.vb" />
     <Compile Include="ItemTipo.vb" />
+    <Compile Include="Rubro.vb" />
+    <Compile Include="SubRubro.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
